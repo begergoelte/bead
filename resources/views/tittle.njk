@@ -1,0 +1,39 @@
+{% extends 'usermaster' %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/co/4.1.0/index.min.js"></script>
+<script src="/scripts/delete.js"></script>
+{% endblock %}
+
+{% block title %}{{ title.name }}{% endblock %}
+{% block content %}
+  <h1>{{ title.name }}</h1>
+  <p><a href="{{ 'title_list' | route }}?category={{ title.category.id }}">{{ title.category.name }}</a></p>
+  {% if titleImage %}
+  <img src="{{ titleImage }}">
+  {% endif %}
+  <h2>description</h2>
+  <p>{{ title.description }}</p>
+  {% if currentUser.id == title.created_by.id %}
+  <div>
+    {{ csrfField | safe }}
+    <a class="btn btn-primary" href="{{ 'title_edit' | route({id: title.id}) }}">Modify</a>
+    <a class="btn btn-danger btn-delete" href="{{ 'title_delete' | route({id: title.id}) }}">Delete</a>
+    <span class="help-block"></span>
+  </div>
+
+  <div class="modal fade confirm-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Do you really want to hurt me ? 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success modal-ok" data-dismiss="modal">OK</button>
+          <button type="button" class="btn btn-danger modal-cancel" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'usermaster' %}
+
+{% block title %}Home{% endblock %}
+
+{% block scripts %}
+<script src="/scripts/main.js"></script>
+{% endblock %}
+
+{% block content %}
+  <form action="{{ 'title_list' | route }}" method="GET" style="position: relative;">
+    {{ csrfField }}
+    <div class="input-group search-box">
+      <input type="text" class="form-control title-search" placeholder="Searching..." name="titleName" autocomplete="off">
+      <span class="input-group-btn">
+        <button class="btn btn-info" type="submit">GO!</button>
+      </span>
+    </div>
+    <div class="list-group title-suggestions suggestions"></div>
+  </form>
+  {% for categoryBatch in categories | batch(3) %}
+  <div class="row">
+    {% for category in categoryBatch %}
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{ category.name }}
+          <a href="{{ 'title_list' | route }}?category={{ category.id }}" class="btn btn-warning btn-xs pull-right">All</a>
+        </div>
+        <div class="list-group">
+          {% for title in category.latestTitles %}
+          <a href="{{ 'title_page' | route({id: title.id}) }}" class="list-group-item">{{ title.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+{% endblock %}

@@ -6,8 +6,8 @@ const Route = use('Route')
 Route.get('/login', 'UserController.login').as('login')
 Route.post('/login', 'UserController.doLogin').as('do_login')
 
-Route.get('/adminlogin', 'UserController.login').as('adminlogin')
-Route.post('/adminlogin', 'UserController.Login').as('do_adminlogin')
+Route.get('/adminlogin', 'UserController.adminlogin').as('adminlogin')
+Route.post('/adminlogin', 'UserController.doAdminLogin').as('do_adminlogin')
 
 
 Route.get('/register', 'UserController.register').as('register')

@@ -28,6 +28,26 @@ class UserController {
     }
   }
 
+   * doAdminLogin (request, response) {
+    const username = request.input('username')
+    const password = request.input('password')
+
+    try {
+      const adminlogin = yield request.auth.attempt(username, password)
+
+      if (adminlogin) {
+        response.route('adminlogin')
+        return
+      }
+
+      throw new Error('Invalid credentails')
+    }
+	catch (err) {
+      yield request.withAll().andWith({ error: err }).flash()
+      response.route('adminlogin')
+    }
+  }
+
 
   /**
    *
@@ -38,6 +58,8 @@ class UserController {
     const validation = yield Validator.validateAll(userData, {
       username: 'required|alpha_numeric|unique:users',
       email: 'required|email|unique:users',
+      address: 'required|alpha_numeric',
+      phone: 'required|alpha_numeric',
       password: 'required|min:4',
       password_again: 'required|same:password'
     })
@@ -50,12 +72,15 @@ class UserController {
 
       response.route('register')
 	  return;
-	  
+
+    
     }
 	
     const user = new User()
     user.username = userData.username
     user.email = userData.email
+    user.address = userData.address
+    user.phone = userData.phone
     user.password = yield Hash.make(userData.password)
 
     yield user.save()
@@ -85,6 +110,14 @@ class UserController {
     yield response.sendView('login')
   }
 
+* adminlogin (request, response) {
+    if (request.currentUser) {
+      response.route('title_create')
+      return
+    }
+
+    yield response.sendView('adminlogin')
+  }
   /**
    *
    */
@@ -162,6 +195,12 @@ class UserController {
     if (userData.email !== user.email) {
       rules.email = 'required|email|unique:users'
     }
+     if (userData.address !== user.address) {
+      rules.address = 'required|alpha_numeric'
+    }
+     if (userData.phone !== user.phone) {
+      rules.phone = 'required|alpha_numeric'
+    }
 
     const validation = yield Validator.validateAll(userData, rules)
 
@@ -176,6 +215,8 @@ class UserController {
 	
     user.username = userData.username
     user.email = userData.email
+    user.address = userData.address
+    user.phone = userData.phone
 
     yield user.update()
 

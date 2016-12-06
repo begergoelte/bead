@@ -91,16 +91,15 @@ Vegyünk példának egy egyszerű folyamatot:
 2.	Bejelentkezés után megadhatja a termék nevét, kategóriáját, leírást, és feltölthet egy képet
 3.  Az újtermék felvétele után módosíthatja a terméket a 'Modify'gombbal, és törölhet a 'Delete' gombbal
 
-![](kepek/komp.png)
-
 
 ###2.	Tervezés
 
 #####2.1.	Architektúra terv
 
+![](kepek/01.png)
 ######2.1.1. Komponensdiagram
 
-
+![](kepek/comp.png)
 
 ######2.1.2. Oldaltérkép:
 

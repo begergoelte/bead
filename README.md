@@ -96,10 +96,10 @@ Vegyünk példának egy egyszerű folyamatot:
 
 #####2.1.	Architektúra terv
 
-![](kepek/01.png)
+![xy](kepek/01.png)
 ######2.1.1. Komponensdiagram
 
-![](kepek/comp.png)
+![xyy](kepek/comp.png)
 
 ######2.1.2. Oldaltérkép:
 

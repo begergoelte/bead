@@ -130,6 +130,29 @@ class UserController {
     yield response.sendView('register')
   }
 
+  * doBuy (request, response) {
+    const titleData = request.all()
+    const title = new Title()
+    title.name = titleData.name
+
+    const user =  request.currentUser
+    const purchased = new Purchased()
+
+    purchased.username = user.username
+    purchased.titlename = title.username
+    purchased.email = user.email
+    purchased.address = user.address
+    purchased.phone = user.phone
+
+    yield purchased.save()
+   
+      response.route('title')
+      return
+    }
+
+ //   yield response.sendView('register')
+ // }
+
   /**
    *
    */
@@ -157,7 +180,7 @@ class UserController {
      response.route('profile')
 	 return;
     }
-	
+    
     const user = request.currentUser
     const isSame = yield Hash.verify(userData.old_password, user.password)
 

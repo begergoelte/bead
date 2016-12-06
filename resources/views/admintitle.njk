@@ -1,4 +1,4 @@
-{% extends 'usermaster' %}
+{% extends 'master' %}
 
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/co/4.1.0/index.min.js"></script>
@@ -14,9 +14,11 @@
   {% endif %}
   <h2>description</h2>
   <p>{{ title.description }}</p>
+{% if currentUser.id == title.created_by.id %}
   <div>
     {{ csrfField | safe }}
-    <a class="btn btn-primary" href="{{ 'buy' | route }}">Buy it!"</a>
+    <a class="btn btn-primary" href="{{ 'title_edit' | route({id: title.id}) }}">Modify</a>
+    <a class="btn btn-danger btn-delete" href="{{ 'title_delete' | route({id: title.id}) }}">Delete</a>
     <span class="help-block"></span>
   </div>
 
@@ -33,5 +35,5 @@
       </div>
     </div>
   </div>
-
+ {% endif %}
 {% endblock %}

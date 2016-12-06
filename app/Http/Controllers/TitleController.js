@@ -26,6 +26,35 @@ class TitleController {
     })
   }
 
+   * adminindex (request, response) {
+    const page = Math.max(1, request.input('p'))
+    const filters = {
+      titleName: request.input('titleName') || '',
+      category: request.input('category') || 0,
+      createdBy: request.input('createdBy') || 0
+    }
+
+    const titles = yield Title.query()
+      .active()
+      .where(function () {
+        if (filters.category > 0) this.where('category_id', filters.category)
+        if (filters.createdBy > 0) this.where('created_by_id', filters.createdBy)
+        if (filters.titleName.length > 0) this.where('name', 'LIKE', `%${filters.titleName}%`)
+      })
+      .with('created_by')
+      .paginate(page, 9)
+
+    const categories = yield Category.all()
+    const users = yield User.all()
+
+    yield response.sendView('admintitles', {
+      titles: titles.toJSON(),
+      categories: categories.toJSON(),
+      users: users.toJSON(),
+      filters
+    })
+  }
+
   * index (request, response) {
     const page = Math.max(1, request.input('p'))
     const filters = {
@@ -102,7 +131,7 @@ class TitleController {
       response.route('title_create')
       return
     }
-
+  
     const title = new Title()
     title.name = titleData.name
     title.description = titleData.description
@@ -113,7 +142,7 @@ class TitleController {
     yield title.save()
     yield titleImage.move(Helpers.publicPath() + '/images', `${title.id}.jpg`)
 
-    response.route('title_page', { id: title.id })
+    response.route('admin_title_page', { id: title.id })
   }
 
   * show (request, response) {
@@ -134,6 +163,24 @@ class TitleController {
     }
   }
 
+
+  * adminshow (request, response) {
+    const titleId = request.param('id')
+    const title = yield Title.find(titleId)
+
+    if (title) {
+      yield title.related('category').load()
+      yield title.related('created_by').load()
+
+      const fileName = `/images/${title.id}.jpg`
+      const imageExists = yield fileExists(`${Helpers.publicPath()}/${fileName}`)
+      const titleImage = imageExists ? fileName : false
+
+      yield response.sendView('admintitle', { title: title.toJSON(), titleImage })
+    } else {
+      response.notFound('title not found.')
+    }
+  }
  
   * edit (request, response) {
     const titleId = request.param('id')

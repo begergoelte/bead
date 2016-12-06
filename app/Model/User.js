@@ -3,13 +3,18 @@
 const Lucid = use('Lucid')
 
 class User extends Lucid {
-  apiTokens () {
-    return this.hasMany('App/Model/Token')
+    static scopeActive (builder) {
+    builder.where('deleted', 0)
   }
 
-  titles () {
-    return this.hasMany('App/Model/Title')
+  category () {
+    return this.belongsTo('App/Model/Category')
   }
+
+  created_by () {
+    return this.belongsTo('App/Model/User', 'id', 'created_by_id')
+  }
+  
 }
 
 module.exports = User

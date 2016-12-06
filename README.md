@@ -74,7 +74,7 @@ Létezik belőle olyan, amely egy offline bolthoz kapcsolódik, annak az interne
 *   Keresés a termékek között
 
 **Bejelentkezett admin**: Külön route elérése biztossított az adminak, ha /adminglogin oldalon jelentkezik
-be az admin, akkor :
+be az admin, (felhasznolonev:admin, jelszo: admin )akkor :
 
 *	Új termék felvétele
 *	Meglévő termék megtekintése
@@ -140,28 +140,33 @@ Vegyünk példának egy egyszerű folyamatot:
 
 ######2.2.1.Oldalvázlatok:
 
-**Bejelentkezés/Regisztrálás**
-
 
 **Regisztrálás**
 
+![](kepek/regis.png)
 
 **Bejelentkezés**
 
+![](kepek/login.png)
 
 **Főoldal**
 
+![](kepek/main.png)
 
 **Új termék**
 
+![](kepek/upload.png)
 
-**termék lista**
+**keresés**
 
+![](kepek/keres.png)
 
 **termék megtekintése**
 
+![](kepek/termek.png)
 
-**termék szekesztése**
+**termék szekesztése/torles (kizarolag az admin felületen)**
 
+![](kepek/modi.png)
 
 

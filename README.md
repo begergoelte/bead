@@ -143,30 +143,30 @@ Vegyünk példának egy egyszerű folyamatot:
 
 **Regisztrálás**
 
-![](kepek/regis.png)
+![](kepek/regis.jpg)
 
 **Bejelentkezés**
 
-![](kepek/login.png)
+![](kepek/login.jpg)
 
 **Főoldal**
 
-![](kepek/main.png)
+![](kepek/main.jpg)
 
 **Új termék**
 
-![](kepek/upload.png)
+![](kepek/upload.jpg)
 
 **keresés**
 
-![](kepek/keres.png)
+![](kepek/keres.jpg)
 
 **termék megtekintése**
 
-![](kepek/termek.png)
+![](kepek/termek.jpg)
 
 **termék szekesztése/torles (kizarolag az admin felületen)**
 
-![](kepek/modi.png)
+![](kepek/modi.jpg)
 
 

@@ -216,7 +216,7 @@ A tesztelés során az alapvető funkciók lettek ellenőrizve.
 + **1. lépés**
 Egy konzol, azaz Parancssor nyitása a gépen
 + **2. lépés**
-*git clone https://github.com/Alex1842/alkfejlBeadando.git* parancs kiadása
+*git clone https://github.com/bengergo/bead/.git* parancs kiadása
 + **3. lépés**
 *git config --global url."https://".insteadOf git://* parancs kiadása
 + **4. lépés**

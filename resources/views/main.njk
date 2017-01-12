@@ -4,9 +4,13 @@
 
 {% block scripts %}
 <script src="/scripts/main.js"></script>
+ <script src="/scripts/popup_login.js"></script>
 {% endblock %}
 
+
 {% block content %}
+<div id="navContainer">
+
   <form action="{{ 'title_list' | route }}" method="GET" style="position: relative;">
     {{ csrfField }}
     <div class="input-group search-box">
@@ -35,5 +39,8 @@
     </div>
     {% endfor %}
   </div>
+
   {% endfor %}
+  </div>
+
 {% endblock %}

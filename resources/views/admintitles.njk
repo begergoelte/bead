@@ -1,5 +1,9 @@
 {% extends 'master' %}
 
+{% block scripts %}
+<script src="/scripts/counter.js"></script>
+{% endblock %}
+
 {% block title %}Start Shopping{% endblock %}
 {% block content %}
   <h1>Start Shopping</h1>
@@ -39,6 +43,10 @@
   <div class="row">
     {% for title in titleBatch %}
     <div class="col-md-4">
+
+    <div id="counter">
+  
+    </div>
       <a class="result-item" href="{{ 'admin_title_page' | route({ id: title.id }) }}">
         <div class="panel panel-default">
           <div class="panel-body">

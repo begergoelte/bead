@@ -267,7 +267,17 @@ class TitleController {
     response.route('title_page', { id: title.id })
     
   }
-
+  
+*ajaxDelete(request, response) {
+        const id = request.param('id')
+        const critic = yield Critic.find(id)
+        if (!critic) {
+            response.notFound('Hiba történt a feldolgozás során!')
+            return
+        }
+        yield critic.delete()
+        response.ok({success: true});
+    }
   
   * doDelete (request, response) {
     const titleId = request.param('id')

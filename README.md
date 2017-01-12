@@ -169,4 +169,62 @@ Vegyünk példának egy egyszerű folyamatot:
 
 ![](kepek/modi.jpg)
 
+###**3. Könyvtárstruktúrában lévő mappák funkciójának bemutatása**
++ app->Http : Ajax-os funkciókhoz szükséges kiegészítések
+  * routes.js :  további szükséges végpontok felvétele
++ app->Http->Controllers
+  * TitleController.js : 
+    * ajaxDelete : a hirdetés Ajax-os törlését végzi
+  * UserController.js : 
+    * ajaxLogin : belépés Ajax-szal
++ public->scripts : a funkciókhoz szükséges kiegészítések
+  * delete.js : Ajax-os törlés biztosítása
+  * popup_login.js : bejelentkező felület pop-up ablakkal való megvalósítása
+  * popup_login.js : regisztrációs felület pop-up ablakkal való megvalósítása
+
++ resources->views : kliensoldali funkciók működéséhez szükséges kiegészítések
+Az alábbi fájlok módosításai a fenti scriptek importálásában változtak.
+Ezen kívül az űrlapok küldés gombja le van tiltv addig, amíg a felhasználó ki nem töltötte az összes olyan mezőt, ami a fejlesztő által kötelezően kitöltendő kategóriában van meghatározva.
+  * titles.njk 
+  * admintitles.njk
+  * master.njk
+  * main.njk
+  * login.njk
+
+###**4. Tesztelés**
+
+Maga a tesztelés az órán is használt Selinium IDE-val történt.
+A teszteléshez tartozó mentett fájlok a *test* nevű mappában találhatók.
+A tesztelés során az alapvető funkciók lettek ellenőrizve.
+
+* Bejelentkezés : *login.html*
+* Regisztráció : *registration.html*
+* Új title hozzáadása : *newitem.html*
+* Title módosítása: *modify.html*
+* Titlte törlése : *delete.html*
+* Kijelentkezés: *logout.html*
+
+
+###**5. Felhasználó dokumentáció**
+
+####**5.1. A futtatáshoz ajánlott hardver-, szoftver konfiguráció**
++ **Futtatáshoz szükséges operációs rendszer:** Tetszőlegesen bármilyen operációs rendszer használható
++ **A futtastáshoz szükséges hardver:** Az operációs rendszerek szerint van megadva
++ **Egyéb:** Internetes böngésző, JavaScript, illetve az alkalmazás által használt össze kiegészítőket tartalmazó fájlok telepítése ajánlott
+
+####**5.2. Telepítés lépései: hogyan kerül a Githubról a célgépre a program, hogyan kell elindítani**
++ **1. lépés**
+Egy konzol, azaz Parancssor nyitása a gépen
++ **2. lépés**
+*git clone https://github.com/Alex1842/alkfejlBeadando.git* parancs kiadása
++ **3. lépés**
+*git config --global url."https://".insteadOf git://* parancs kiadása
++ **4. lépés**
+*npm install* parancs kiadása
++ **5. lépés**
+.env.example fájl átnevezése .env-re
++ **6. lépés**
+*npm run dev* parancs kiadása
++ **7. lépés**
+Böngészőben *localhost:3333* megnyitása
 

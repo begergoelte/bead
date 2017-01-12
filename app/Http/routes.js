@@ -2,6 +2,10 @@
 
 const Route = use('Route')
 
+Route.group('ajax', function () {
+   Route.delete('/title/:id/delete', 'TitleController.ajaxDelete').middleware('auth')
+   Route.post('/login', 'UserController.ajaxLogin')
+ }).prefix('/ajax')
 
 Route.get('/login', 'UserController.login').as('login')
 Route.post('/login', 'UserController.doLogin').as('do_login')
